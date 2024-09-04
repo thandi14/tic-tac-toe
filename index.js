@@ -2,17 +2,21 @@ let board;
 let currentPlayer;
 let gameActive;
 let gameMode;
+let player1Score = 0;
+let player2Score = 0;
 
 const cells = document.querySelectorAll('.cell');
 const message = document.getElementById('message');
 const options = document.querySelector('.options');
-const grid = document.querySelector('.grid');
+const gameContainer = document.querySelector('.game-container');
+const player1ScoreElement = document.getElementById('player1Score');
+const player2ScoreElement = document.getElementById('player2Score');
 
 function startGame(mode) {
-    // Hide the options and show the grid
+    // Hide the options and show the game container
     options.classList.add('hidden');
     setTimeout(() => {
-        grid.classList.add('visible');
+        gameContainer.classList.add('visible');
     }, 500);
 
     // Initialize game variables
@@ -62,6 +66,7 @@ function checkResult() {
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
             gameActive = false;
             message.textContent = `Player ${currentPlayer} wins!`;
+            updateScore();
             return;
         }
     }
@@ -70,4 +75,19 @@ function checkResult() {
         gameActive = false;
         message.textContent = 'It\'s a draw!';
     }
+}
+
+function updateScore() {
+    if (currentPlayer === 'X') {
+        player1Score++;
+        player1ScoreElement.textContent = player1Score;
+    } else {
+        player2Score++;
+        player2ScoreElement.textContent = player2Score;
+    }
+}
+
+function newGame() {
+    // Reset the board and start a new game
+    startGame(gameMode);
 }
