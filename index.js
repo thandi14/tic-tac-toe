@@ -67,6 +67,7 @@ function checkResult() {
             gameActive = false;
             message.textContent = `Player ${currentPlayer} wins!`;
             updateScore();
+            drawWinningLine(a, b, c); // Draw the winning line
             return;
         }
     }
@@ -76,6 +77,37 @@ function checkResult() {
         message.textContent = 'It\'s a draw!';
     }
 }
+
+function drawWinningLine(a, b, c) {
+    const cellsArray = Array.from(cells);
+    const cellA = cellsArray[a];
+    const cellB = cellsArray[b];
+    const cellC = cellsArray[c];
+
+    const line = document.createElement('div');
+    line.classList.add('winning-line');
+
+    // Calculate the line's start and end positions
+    const rectA = cellA.getBoundingClientRect();
+    const rectC = cellC.getBoundingClientRect();
+    const startX = rectA.left + rectA.width / 2;
+    const startY = rectA.top + rectA.height / 2;
+    const endX = rectC.left + rectC.width / 2;
+    const endY = rectC.top + rectC.height / 2;
+
+    const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+    const length = Math.sqrt((endX - startX) ** 2 + (endY - startY) ** 2);
+
+    line.style.width = `${length}px`;
+    line.style.transform = `rotate(${angle}deg)`;
+    line.style.left = `${startX}px`;
+    line.style.top = `${startY}px`;
+
+    document.body.appendChild(line);
+}
+
+
+
 
 function updateScore() {
     if (currentPlayer === 'X') {

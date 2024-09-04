@@ -30,6 +30,17 @@
             gap: 20px;
         }
 
+        .winning-line {
+            position: absolute;
+            height: 5px;
+            background-color: red;
+            z-index: 10;
+            transform-origin: left;
+            transition: opacity 0.5s ease;
+        }
+
+
+
         .options > button {
             height: 50px;
             cursor: pointer;
@@ -61,6 +72,7 @@
             grid-template-rows: repeat(3, 100px);
             gap: 10px;
             margin-top: 20px;
+
         }
 
         .cell {
