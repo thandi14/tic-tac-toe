@@ -19,11 +19,41 @@
             margin-bottom: 20px;
         }
 
+        .options {
+            opacity: 1;
+            transition: opacity 0.5s ease;
+            position: absolute;
+            bottom: 60%;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            gap: 20px
+        }
+
+        .options > button {
+            height: 50px;
+            cursor: pointer;
+        }
+
+        .options.hidden {
+            display: none;
+            opacity: 0;
+            pointer-events: none;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 100px);
             grid-template-rows: repeat(3, 100px);
             gap: 10px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .grid.visible {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .cell {
@@ -43,33 +73,40 @@
             font-size: 1.5rem;
         }
 
-        .options {
-            margin-bottom: 20px;
+        .ttt {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 500px;
+            width: 500px;
+            position: relative;
         }
     </style>
 </head>
 <body>
+    <div class="ttt">
+        <h1>Tic-Tac-Toe</h1>
 
-    <h1>Tic-Tac-Toe</h1>
+        <div class="options">
+            <button onclick="startGame('2-player')">2 Player</button>
+            <button onclick="startGame('computer')">Play Against Computer</button>
+        </div>
 
-    <div class="options">
-        <button onclick="startGame('2-player')">2 Player</button>
-        <button onclick="startGame('computer')">Play Against Computer</button>
+        <div class="grid">
+            <div class="cell" onclick="makeMove(0)"></div>
+            <div class="cell" onclick="makeMove(1)"></div>
+            <div class="cell" onclick="makeMove(2)"></div>
+            <div class="cell" onclick="makeMove(3)"></div>
+            <div class="cell" onclick="makeMove(4)"></div>
+            <div class="cell" onclick="makeMove(5)"></div>
+            <div class="cell" onclick="makeMove(6)"></div>
+            <div class="cell" onclick="makeMove(7)"></div>
+            <div class="cell" onclick="makeMove(8)"></div>
+        </div>
+
+        <div id="message"></div>
     </div>
 
-    <div class="grid">
-        <div class="cell" onclick="makeMove(0)"></div>
-        <div class="cell" onclick="makeMove(1)"></div>
-        <div class="cell" onclick="makeMove(2)"></div>
-        <div class="cell" onclick="makeMove(3)"></div>
-        <div class="cell" onclick="makeMove(4)"></div>
-        <div class="cell" onclick="makeMove(5)"></div>
-        <div class="cell" onclick="makeMove(6)"></div>
-        <div class="cell" onclick="makeMove(7)"></div>
-        <div class="cell" onclick="makeMove(8)"></div>
-    </div>
-
-    <div id="message"></div>
 
     <script src="index.js"></script>
 </body>

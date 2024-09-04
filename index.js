@@ -5,8 +5,17 @@ let gameMode;
 
 const cells = document.querySelectorAll('.cell');
 const message = document.getElementById('message');
+const options = document.querySelector('.options');
+const grid = document.querySelector('.grid');
 
 function startGame(mode) {
+    // Hide the options and show the grid
+    options.classList.add('hidden');
+    setTimeout(() => {
+        grid.classList.add('visible');
+    }, 500);
+
+    // Initialize game variables
     board = ['', '', '', '', '', '', '', '', ''];
     currentPlayer = 'X';
     gameActive = true;
